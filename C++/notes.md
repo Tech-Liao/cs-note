@@ -52,3 +52,79 @@ typename()--代表创建临时对象或临时变量
 ## 析构函数
 
 当对象有new的空间，在析构函数中，需要用delete释放new的空间
+
+
+
+
+
+## static讨论
+
+static可以用于函数和变量，形成静态变量和静态函数。类的内容存在内存中只有1份，不会根据对象个数的变动而变动。
+
+静态成员函数没有this指针，即无法直接访问对象的数据，只能处理静态变量。
+
+静态成员函数可以通过对象调用，也可以通过类名调用。
+
+在非静态成员函数执行时，是根据**this**指针来判断执行的数据和内容。
+
+## 模板
+
+### 类模板
+
+```c++
+template<typename T>
+class Test
+{
+private:
+	T re,im;
+};
+//使用
+Test<double> c1;
+```
+
+### 函数模板
+
+```c++
+template<class T>
+const T& min(const T& a,const T& b)
+{
+    return b<a?b:a;
+}
+//使用
+T r1,t2;
+r3=min(r1,r2)	//编译器可以自行推导T，不需要写T
+```
+
+## namespace名字空间
+
+```c++
+namespace std	//将所有花括号内的东西都加上了std的名字。
+{
+};
+
+//using directive直接使用名字空间
+using namespace std;
+//using declaration,仅使用某个空间的名字。
+using std::cout
+```
+
+
+
+
+
+## 转换函数
+
+转换函数没有返回类型，转换函数的type可以是任何类型，包括自定义类型
+
+````c++
+class Test
+{
+	operator double const{ return (double) xxx;}	//转换函数
+}
+````
+
+## non-explicit-one-argument 构造函数
+
+one-argument：需要1个实参。
+
+explicit代表明确，表示必须显式的运用，才可以执行。
